@@ -47,6 +47,16 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+:target {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 4px;
+}
+
+
 /*
   Убираем стандартный внешний отступ браузера у body.
   Без этого вокруг страницы может появиться белая рамка.
@@ -153,6 +163,23 @@ a:focus-visible {
 .site-nav__list a:hover {
   text-decoration: underline;
 }
+
+.breadcrumbs {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-md);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.breadcrumbs a {
+  color: var(--color-primary);
+}
+
+.breadcrumbs span::before {
+  content: " / ";
+  color: var(--color-muted);
+}
+
 
 /*
   Пока это обычная ссылка, но визуально она оформляется как кнопка.
