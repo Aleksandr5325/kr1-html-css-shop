@@ -261,6 +261,18 @@ a:focus-visible {
   cursor: not-allowed;
 }
 
+/*
+  Кнопка «Наверх» — блок to-top.
+  Внешний вид берётся из .button и .button--primary (БЭМ-микс),
+  здесь только положение: всегда в правом нижнем углу окна.
+*/
+.to-top {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
 /* ===============================
    4. Компоненты страницы
@@ -599,6 +611,9 @@ a:focus-visible {
   Боковая панель с фильтрами — область filters.
 */
 .catalog-filters {
+  position: sticky;
+  top: var(--space-md);
+  align-self: start;
   grid-area: filters;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
