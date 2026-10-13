@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Главная страница учебного интернет-магазина: популярные товары, преимущества и форма заявки.">
+  <meta name="description" content="Главная страница магазина мягких игрушек MellShop: популярные товары, преимущества и форма заявки.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Учебный интернет-магазин">
-  <meta property="og:description" content="Учебный frontend-проект интернет-магазина.">
+  <meta property="og:title" content="MellShop — магазин мягких игрушек">
+  <meta property="og:description" content="Плюшевые герои игр, мемов и мультфильмов и классические мягкие зверята.">
   <meta property="og:image" content="https://aleksandr5325.github.io/kr1-html-css-shop/images/preview.jpg">
-  <title>Учебный интернет-магазин</title>
+  <title>MellShop — магазин мягких игрушек</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
+      <a class="site-header__logo" href="index.html">MellShop</a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
@@ -33,64 +33,93 @@
 
   <main>
     <section class="hero">
-        <h1>Учебный интернет-магазин</h1>
-        <p>
-            Это стартовая страница учебного frontend-проекта.
-            В дальнейшем на её основе будет разработан многостраничный сайт
-            интернет-магазина или каталога услуг.
-        </p>
-        <a class="button button--primary" href="#popular">Перейти к товарам</a>
+      <h1>MellShop — магазин мягких игрушек</h1>
+      <p>
+        Плюшевые герои игр, мемов и мультфильмов, а ещё классические мягкие зверята.
+        Каждую игрушку приятно обнимать — и не стыдно подарить.
+      </p>
+      <a class="button button--primary" href="#popular">Смотреть популярные</a>
     </section>
-    
-    <section class="section" id="advantages">
-        <h2>Преимущества проекта</h2>
 
-        <ul class="advantages-list">
-            <li>понятная HTML-структура;</li>
-            <li>семантические блоки страницы;</li>
-            <li>подключение внешнего CSS-файла;</li>
-            <li>подготовка к разработке многостраничного сайта.</li>
-        </ul>
+    <section class="section" id="advantages">
+      <h2>Почему MellShop</h2>
+
+      <ul class="advantages-list">
+        <li>игрушки из гипоаллергенных материалов;</li>
+        <li>доставка по Москве за один день;</li>
+        <li>бесплатная подарочная упаковка;</li>
+        <li>обмен и возврат в течение 14 дней.</li>
+      </ul>
     </section>
 
     <section class="section" id="popular">
       <h2>Популярные товары</h2>
 
       <div class="products-grid">
-        <article class="product-card product-card--featured">
-          <h3 class="product-card__title">Товар 1</h3>
-          <p class="product-card__description">Краткое описание учебного товара.</p>
-          <p class="product-card__price">Цена: 1000 руб.</p>
+        <article class="product-card">
+          <span class="product-card__badge">Хит</span>
+          <img
+            class="product-card__image"
+            src="images/shlepa.jpg"
+            alt="Мягкая игрушка Шлёпа — каракал с большими ушами"
+            width="800"
+            height="800"
+          >
+          <p class="product-card__category">Мемы</p>
+          <h3 class="product-card__title">Шлёпа</h3>
+          <p class="product-card__description">Тот самый каракал из интернета — мягкий, круглый и очень довольный.</p>
+          <p class="product-card__price">1490 руб.</p>
           <button
             class="button button--primary product-card__button"
             type="button"
-            data-product="Товар 1"
+            data-product="Шлёпа"
           >
             Заказать
           </button>
         </article>
 
         <article class="product-card">
-          <h3 class="product-card__title">Товар 2</h3>
-          <p class="product-card__description">Краткое описание учебного товара.</p>
-          <p class="product-card__price">Цена: 1500 руб.</p>
+          <span class="product-card__badge product-card__badge--new">Новинка</span>
+          <img
+            class="product-card__image"
+            src="images/pudge.jpg"
+            alt="Мягкая игрушка Малыш Пудж из Dota 2"
+            width="800"
+            height="800"
+          >
+          <p class="product-card__category">Игровые персонажи</p>
+          <h3 class="product-card__title">Малыш Пудж</h3>
+          <p class="product-card__description">Плюшевая версия героя Dota 2 — без крюка, зато очень обнимательная.</p>
+          <p class="product-card__price">2190 руб.</p>
           <button
             class="button button--primary product-card__button"
             type="button"
-            data-product="Товар 2"
+            data-product="Малыш Пудж"
           >
             Заказать
           </button>
         </article>
 
-        <article class="product-card">
-          <h3 class="product-card__title">Товар 3</h3>
-          <p class="product-card__description">Краткое описание учебного товара.</p>
-          <p class="product-card__price">Цена: 2000 руб.</p>
+        <article class="product-card product-card--discount">
+          <span class="product-card__badge product-card__badge--sale">Скидка</span>
+          <img
+            class="product-card__image"
+            src="images/shelly.jpg"
+            alt="Мягкая игрушка Шелли из Brawl Stars с фиолетовыми волосами"
+            width="800"
+            height="800"
+          >
+          <p class="product-card__category">Игровые персонажи</p>
+          <h3 class="product-card__title">Шелли</h3>
+          <p class="product-card__description">Боец из Brawl Stars с фиолетовыми волосами и плюшевым дробовиком.</p>
+          <p class="product-card__price">
+            1690 руб.
+            <s class="product-card__old-price">1990 руб.</s>
+          </p>
           <button
             class="button button--primary product-card__button"
             type="button"
-            data-product="Товар 3"
+            data-product="Шелли"
           >
             Заказать
           </button>
@@ -98,20 +127,17 @@
       </div>
     </section>
 
-
     <aside class="aside-info">
-        <h2>Информация для студентов</h2>
-        <p>
-            На следующих практических занятиях этот проект будет расширяться:
-            появятся формы, модальное окно, дополнительные страницы, Flex/Grid,
-            БЭМ-структура и адаптивная версия сайта.
-        </p>
+      <h2>Подарок к первому заказу</h2>
+      <p>
+        Оформите первый заказ до конца месяца — и мы бесплатно упакуем игрушку
+        в праздничную коробку с открыткой.
+      </p>
     </aside>
-
   </main>
 
   <footer class="site-footer" id="contacts">
-    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+    <p>&copy; 2026 MellShop — учебный проект. Все права защищены.</p>
     <p>Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
 
@@ -215,11 +241,10 @@
         </button>
       </div>
     </form>
-</dialog>
+  </dialog>
 
-<p class="success-message" id="success-message" hidden>
-  Форма успешно отправлена!
-</p>
-
+  <p class="success-message" id="success-message" hidden>
+    Форма успешно отправлена!
+  </p>
 </body>
 </html>

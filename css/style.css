@@ -38,7 +38,7 @@
    2. Базовые стили
    =============================== */
 
-/* 
+/*
   Универсальное правило для всех элементов.
   border-box делает расчёт размеров более понятным:
   width включает content, padding и border.
@@ -55,7 +55,6 @@ html {
   outline: 2px dashed var(--color-primary);
   outline-offset: 4px;
 }
-
 
 /*
   Убираем стандартный внешний отступ браузера у body.
@@ -104,7 +103,6 @@ a:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }
-
 
 /*
   Шапка сайта — блок site-header.
@@ -180,7 +178,6 @@ a:focus-visible {
   background-color: var(--color-primary);
 }
 
-
 .breadcrumbs {
   max-width: var(--container-width);
   margin: 0 auto var(--space-md);
@@ -203,7 +200,6 @@ a:focus-visible {
   margin-right: var(--space-xs);
   color: var(--color-muted);
 }
-
 
 /*
   Кнопка — самостоятельный блок button.
@@ -282,7 +278,6 @@ a:focus-visible {
   border-radius: var(--radius-lg);
 }
 
-
 /*
   Общий класс для разделов страницы.
 */
@@ -290,7 +285,6 @@ a:focus-visible {
   max-width: var(--container-width);
   margin: 0 auto var(--space-xl);
 }
-
 
 /*
   Убираем лишний верхний отступ у заголовков разделов.
@@ -305,12 +299,12 @@ a:focus-visible {
   gap: var(--space-lg);
 }
 
-
 /*
   Карточка товара — блок product-card.
   Используется на главной странице и в каталоге.
 */
 .product-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -366,6 +360,63 @@ a:focus-visible {
 }
 
 /*
+  Бейдж «Хит / Новинка / Скидка» в углу карточки.
+  position: absolute вынимает бейдж из потока и прижимает к правому верхнему углу.
+  Отсчёт идёт от карточки, потому что у неё position: relative.
+*/
+.product-card__badge {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 1;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+/*
+  Модификаторы бейджа: «Новинка» — зелёный, «Скидка» — красный.
+  «Хит» — вариант по умолчанию (основной цвет).
+*/
+.product-card__badge--new {
+  background-color: var(--color-success);
+}
+
+.product-card__badge--sale {
+  background-color: var(--color-danger);
+}
+
+/*
+  Фото товара на всю ширину карточки.
+*/
+.product-card__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+/*
+  Категория товара — мелкий серый текст над названием.
+*/
+.product-card__category {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/*
+  Старая (зачёркнутая) цена рядом с новой.
+*/
+.product-card__old-price {
+  margin-left: var(--space-sm);
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+/*
   Дополнительный информационный блок.
 */
 .aside-info {
@@ -375,7 +426,6 @@ a:focus-visible {
   border-left: 4px solid var(--color-primary);
   background-color: var(--color-surface);
 }
-
 
 
 /* ===============================
@@ -392,7 +442,6 @@ a:focus-visible {
   border: none;
   border-radius: var(--radius-lg);
 }
-
 
 /*
   Затемнение фона за модальным окном.
@@ -480,7 +529,6 @@ a:focus-visible {
   gap: var(--space-md);
   margin-top: var(--space-lg);
 }
-
 
 /*
   Модификатор: форма на отдельной странице заказа.
@@ -609,6 +657,7 @@ a:focus-visible {
   border-radius: var(--radius-sm);
   font: inherit;
 }
+
 
 /* ===============================
    7. Страница товара
