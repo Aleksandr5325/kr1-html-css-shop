@@ -13,13 +13,14 @@
   <script src="js/main.js" defer></script>
 </head>
 <body>
+  <a class="button button--primary skip-link" href="#main">Перейти к содержимому</a>
   <header class="site-header">
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html">MellShop</a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
-          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page">Главная</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заказ</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
@@ -31,7 +32,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero">
       <h1>MellShop — магазин мягких игрушек</h1>
       <p>
@@ -42,7 +43,7 @@
     </section>
 
     <section class="section" id="advantages">
-      <h2>Почему MellShop</h2>
+      <h2 class="section__title">Почему MellShop</h2>
 
       <ul class="advantages-list">
         <li>игрушки из гипоаллергенных материалов;</li>
@@ -53,7 +54,7 @@
     </section>
 
     <section class="section" id="popular">
-      <h2>Популярные товары</h2>
+      <h2 class="section__title">Популярные товары</h2>
 
       <div class="products-grid">
         <article class="product-card">
@@ -125,6 +126,30 @@
           </button>
         </article>
       </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <h2 class="section__title">Частые вопросы</h2>
+
+      <details class="faq__item">
+        <summary class="faq__question">Можно ли стирать игрушки?</summary>
+        <p class="faq__answer">Да, все игрушки можно стирать вручную при 30 °C. Не отжимайте их в машинке — просто дайте высохнуть на воздухе.</p>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__question">Подходят ли игрушки маленьким детям?</summary>
+        <p class="faq__answer">Игрушки рассчитаны на детей от 3 лет: глаза и детали надёжно пришиты, а наполнитель гипоаллергенный.</p>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__question">Сколько стоит подарочная упаковка?</summary>
+        <p class="faq__answer">Нисколько — упакуем любую игрушку бесплатно. Просто напишите об этом в комментарии к заказу.</p>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__question">Как быстро доставят заказ?</summary>
+        <p class="faq__answer">По Москве курьер привезёт игрушку на следующий день, Почтой России — за 5–10 дней.</p>
+      </details>
     </section>
 
     <aside class="aside-info">
