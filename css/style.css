@@ -1,21 +1,30 @@
+/*
+  Шрифт Nunito с Google Fonts: округлые буквы подходят «мягкому» магазину.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap");
+
 /* ===============================
    1. Переменные проекта
    =============================== */
 
 :root {
-  /* Основные цвета проекта */
+  /* Основные цвета проекта: тёплая жёлто-фиолетовая палитра MellShop */
   --color-bg: #ffffff;
-  --color-text: #222222;
-  --color-muted: #666666;
-  --color-primary: #0057b8;
-  --color-primary-dark: #003f86;
-  --color-border: #dddddd;
-  --color-surface: #f7f7f7;
-  --color-surface-accent: #eef5ff;
-  --color-danger: #b00020;
-  --color-success: #168a2f;
-  --color-success-bg: #eefaf0;
+  --color-page: #fffaeb;
+  --color-text: #2b2118;
+  --color-muted: #6b5a4a;
+  --color-primary: #6d3fc0;
+  --color-primary-dark: #4f2a96;
+  --color-border: #f0dca8;
+  --color-surface: #fff1c7;
+  --color-surface-accent: #ffe49a;
+  --color-danger: #c62839;
+  --color-success: #2e7d4f;
+  --color-success-bg: #eaf7ef;
   --color-white: #ffffff;
+
+  /* Тень карточки при наведении */
+  --shadow-card: 0 8px 24px rgba(109, 63, 192, 0.18);
 
   /* Отступы */
   --space-xs: 4px;
@@ -25,9 +34,9 @@
   --space-xl: 32px;
 
   /* Скругления */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
 
   /* Размеры */
   --container-width: 1100px;
@@ -62,10 +71,10 @@ html {
 */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Nunito", Arial, sans-serif;
   line-height: 1.5;
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: var(--color-page);
 }
 
 /*
@@ -126,8 +135,9 @@ a:focus-visible {
   Текстовый логотип.
 */
 .site-header__logo {
-  font-weight: 700;
-  color: var(--color-text);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-primary);
   text-decoration: none;
 }
 
@@ -286,7 +296,9 @@ a:focus-visible {
   max-width: var(--container-width);
   margin: 0 auto var(--space-xl);
   padding: var(--space-xl) var(--space-lg);
-  background-color: var(--color-surface-accent);
+  background:
+    linear-gradient(rgba(255, 250, 235, 0.8), rgba(255, 250, 235, 0.8)),
+    url("../images/toy-store.jpg") center / cover;
   border-radius: var(--radius-lg);
 }
 
@@ -324,10 +336,13 @@ a:focus-visible {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background-color: var(--color-bg);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 
 .product-card:hover {
   border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
 }
 
 /*
