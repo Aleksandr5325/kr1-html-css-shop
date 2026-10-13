@@ -1,21 +1,30 @@
+/*
+  Шрифт Nunito с Google Fonts: округлые буквы подходят «мягкому» магазину.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap");
+
 /* ===============================
    1. Переменные проекта
    =============================== */
 
 :root {
-  /* Основные цвета проекта */
+  /* Основные цвета проекта: тёплая жёлто-фиолетовая палитра MellShop */
   --color-bg: #ffffff;
-  --color-text: #222222;
-  --color-muted: #666666;
-  --color-primary: #0057b8;
-  --color-primary-dark: #003f86;
-  --color-border: #dddddd;
-  --color-surface: #f7f7f7;
-  --color-surface-accent: #eef5ff;
-  --color-danger: #b00020;
-  --color-success: #168a2f;
-  --color-success-bg: #eefaf0;
+  --color-page: #fffaeb;
+  --color-text: #2b2118;
+  --color-muted: #6b5a4a;
+  --color-primary: #6d3fc0;
+  --color-primary-dark: #4f2a96;
+  --color-border: #f0dca8;
+  --color-surface: #fff1c7;
+  --color-surface-accent: #ffe49a;
+  --color-danger: #c62839;
+  --color-success: #2e7d4f;
+  --color-success-bg: #eaf7ef;
   --color-white: #ffffff;
+
+  /* Тень карточки при наведении */
+  --shadow-card: 0 8px 24px rgba(109, 63, 192, 0.18);
 
   /* Отступы */
   --space-xs: 4px;
@@ -25,9 +34,9 @@
   --space-xl: 32px;
 
   /* Скругления */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
 
   /* Размеры */
   --container-width: 1100px;
@@ -38,7 +47,7 @@
    2. Базовые стили
    =============================== */
 
-/* 
+/*
   Универсальное правило для всех элементов.
   border-box делает расчёт размеров более понятным:
   width включает content, padding и border.
@@ -56,17 +65,16 @@ html {
   outline-offset: 4px;
 }
 
-
 /*
   Убираем стандартный внешний отступ браузера у body.
   Без этого вокруг страницы может появиться белая рамка.
 */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Nunito", Arial, sans-serif;
   line-height: 1.5;
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: var(--color-page);
 }
 
 /*
@@ -105,7 +113,6 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-
 /*
   Шапка сайта — блок site-header.
   Фон тянется на всю ширину окна.
@@ -128,8 +135,9 @@ a:focus-visible {
   Текстовый логотип.
 */
 .site-header__logo {
-  font-weight: 700;
-  color: var(--color-text);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-primary);
   text-decoration: none;
 }
 
@@ -180,7 +188,6 @@ a:focus-visible {
   background-color: var(--color-primary);
 }
 
-
 .breadcrumbs {
   max-width: var(--container-width);
   margin: 0 auto var(--space-md);
@@ -192,11 +199,17 @@ a:focus-visible {
   color: var(--color-primary);
 }
 
+/*
+  Разделитель «/» перед каждым пунктом, кроме первого:
+  перед второй и следующими ссылками и перед текущей страницей.
+*/
+.breadcrumbs__link + .breadcrumbs__link::before,
 .breadcrumbs__current::before {
-  content: " / ";
+  content: "/";
+  display: inline-block;
+  margin-right: var(--space-xs);
   color: var(--color-muted);
 }
-
 
 /*
   Кнопка — самостоятельный блок button.
@@ -258,6 +271,40 @@ a:focus-visible {
   cursor: not-allowed;
 }
 
+/*
+  Кнопка «Наверх» — блок to-top.
+  Внешний вид берётся из .button и .button--primary (БЭМ-микс),
+  здесь только положение: всегда в правом нижнем углу окна.
+*/
+.to-top {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/*
+  Ссылка «Перейти к содержимому» для тех, кто управляет сайтом с клавиатуры.
+  Спрятана за верхним краем окна и выезжает, только когда получает фокус (клавиша Tab).
+*/
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-md);
+  z-index: 20;
+}
+
+.skip-link:focus {
+  top: var(--space-md);
+}
+
+/*
+  После перехода по ссылке не обводим весь main пунктиром от правила :target.
+*/
+main:target {
+  outline: none;
+}
 
 /* ===============================
    4. Компоненты страницы
@@ -271,10 +318,11 @@ a:focus-visible {
   max-width: var(--container-width);
   margin: 0 auto var(--space-xl);
   padding: var(--space-xl) var(--space-lg);
-  background-color: var(--color-surface-accent);
+  background:
+    linear-gradient(rgba(255, 250, 235, 0.8), rgba(255, 250, 235, 0.8)),
+    url("../images/toy-store.jpg") center / cover;
   border-radius: var(--radius-lg);
 }
-
 
 /*
   Общий класс для разделов страницы.
@@ -284,11 +332,10 @@ a:focus-visible {
   margin: 0 auto var(--space-xl);
 }
 
-
 /*
   Убираем лишний верхний отступ у заголовков разделов.
 */
-.section h2 {
+.section__title {
   margin-top: 0;
 }
 
@@ -298,12 +345,12 @@ a:focus-visible {
   gap: var(--space-lg);
 }
 
-
 /*
   Карточка товара — блок product-card.
   Используется на главной странице и в каталоге.
 */
 .product-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -311,10 +358,13 @@ a:focus-visible {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background-color: var(--color-bg);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 
 .product-card:hover {
   border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
 }
 
 /*
@@ -359,6 +409,63 @@ a:focus-visible {
 }
 
 /*
+  Бейдж «Хит / Новинка / Скидка» в углу карточки.
+  position: absolute вынимает бейдж из потока и прижимает к правому верхнему углу.
+  Отсчёт идёт от карточки, потому что у неё position: relative.
+*/
+.product-card__badge {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 1;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+/*
+  Модификаторы бейджа: «Новинка» — зелёный, «Скидка» — красный.
+  «Хит» — вариант по умолчанию (основной цвет).
+*/
+.product-card__badge--new {
+  background-color: var(--color-success);
+}
+
+.product-card__badge--sale {
+  background-color: var(--color-danger);
+}
+
+/*
+  Фото товара на всю ширину карточки.
+*/
+.product-card__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+/*
+  Категория товара — мелкий серый текст над названием.
+*/
+.product-card__category {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/*
+  Старая (зачёркнутая) цена рядом с новой.
+*/
+.product-card__old-price {
+  margin-left: var(--space-sm);
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+/*
   Дополнительный информационный блок.
 */
 .aside-info {
@@ -369,6 +476,34 @@ a:focus-visible {
   background-color: var(--color-surface);
 }
 
+/*
+  Частые вопросы — блок faq.
+  Каждый вопрос — тег <details>: браузер сам раскрывает и сворачивает ответ, без JavaScript.
+*/
+.faq__item {
+  margin-bottom: var(--space-sm);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+}
+
+.faq__question {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/*
+  У открытого вопроса (атрибут open) заголовок становится фирменного цвета.
+*/
+.faq__item[open] .faq__question {
+  color: var(--color-primary);
+}
+
+.faq__answer {
+  margin: var(--space-sm) 0 0;
+  color: var(--color-muted);
+}
 
 
 /* ===============================
@@ -385,7 +520,6 @@ a:focus-visible {
   border: none;
   border-radius: var(--radius-lg);
 }
-
 
 /*
   Затемнение фона за модальным окном.
@@ -475,6 +609,42 @@ a:focus-visible {
 }
 
 /*
+  Модификатор: форма на отдельной странице заказа.
+  Ограничиваем ширину, чтобы поля не растягивались на весь экран.
+*/
+.order-form--page {
+  max-width: 640px;
+}
+
+/*
+  Группа полей формы (fieldset) в рамке.
+*/
+.order-form__group {
+  margin: 0 0 var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/*
+  Заголовок группы полей.
+*/
+.order-form__legend {
+  padding: 0 var(--space-xs);
+  font-weight: 700;
+}
+
+/*
+  Вариант выбора: кружок и подпись в одну строку.
+*/
+.order-form__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+/*
   Сообщение об успешной отправке.
 */
 .success-message {
@@ -507,6 +677,9 @@ a:focus-visible {
   Боковая панель с фильтрами — область filters.
 */
 .catalog-filters {
+  position: sticky;
+  top: var(--space-md);
+  align-self: start;
   grid-area: filters;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
@@ -533,7 +706,7 @@ a:focus-visible {
 /*
   Группа полей (категория, цена) в рамке.
 */
-.filters-form fieldset {
+.filters-form__group {
   margin: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
@@ -543,14 +716,14 @@ a:focus-visible {
 /*
   Заголовок группы полей.
 */
-.filters-form legend {
+.filters-form__legend {
   font-weight: 700;
 }
 
 /*
   Каждая подпись с новой строки.
 */
-.filters-form label {
+.filters-form__label {
   display: block;
   margin-bottom: var(--space-sm);
 }
@@ -558,10 +731,97 @@ a:focus-visible {
 /*
   Числовые поля цены — в едином стиле с полями формы заявки.
 */
-.filters-form input[type="number"] {
+.filters-form__input {
   width: 100%;
   padding: 8px 10px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   font: inherit;
+}
+
+
+/* ===============================
+   7. Страница товара
+   =============================== */
+
+/*
+  Блок товара: картинка слева, информация справа.
+  Две равные колонки через CSS Grid.
+*/
+.product {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/*
+  Картинка занимает всю ширину своей колонки,
+  высота подстраивается автоматически.
+*/
+.product__image {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/*
+  Информация о товаре идёт столбиком через Flexbox.
+*/
+.product__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.product__title {
+  margin: 0;
+}
+
+.product__description {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.product__price {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/*
+  Таблица характеристик товара.
+*/
+.product-table {
+  width: 100%;
+  max-width: 600px;
+  border-collapse: collapse;
+}
+
+.product-table caption {
+  margin-bottom: var(--space-sm);
+  color: var(--color-muted);
+  text-align: left;
+}
+
+.product-table th,
+.product-table td {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.product-table th {
+  background-color: var(--color-surface-accent);
+}
+
+/*
+  «Зебра»: каждая вторая строка с фоном, чтобы строки было легче читать.
+*/
+.product-table tbody tr:nth-child(even) {
+  background-color: var(--color-surface);
 }
